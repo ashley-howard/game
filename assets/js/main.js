@@ -67,22 +67,30 @@ function checkKey(e) {
 
     // up arrow
     if (e.keyCode == '38') {
-        console.log('up')
-        // map1[startY][startX -= 1]
-        map1[startY -= 1][startX]
-
+        if (map1[startY - 1][startX] != 1) {
+            map1[startY -= 1][startX]
+            map1[startY][startX] = 2;
+            map1[startY + 1][startX] = 0;
+        } else {
+            console.log('hit wall')
+        }
     }
 
     // down arrow
     else if (e.keyCode == '40') {
-        console.log('down')
-        map1[startY += 1][startX]
+        if (map1[startY + 1][startX] != 1) {
+            map1[startY += 1][startX]
+            map1[startY][startX] = 2;
+            map1[startY - 1][startX] = 0;
+        }
+        else {
+            console.log('hit wall')
+        }
+
     }
 
     // left arrow
     else if (e.keyCode == '37') {
-        console.log('left')
-
         if (map1[startY][startX - 1] != 1) {
             map1[startY][startX -= 1]
             map1[startY][startX] = 2;
@@ -90,13 +98,10 @@ function checkKey(e) {
         } else {
             console.log('hit wall')
         }
-
     }
 
     // right arrow
     else if (e.keyCode == '39') {
-        console.log('right')
-
         if (map1[startY][startX + 1] != 1) {
             map1[startY][startX += 1]
             map1[startY][startX] = 2;
@@ -104,7 +109,6 @@ function checkKey(e) {
         } else {
             console.log('hit wall')
         }
-
     }
 
     // updateMap()
