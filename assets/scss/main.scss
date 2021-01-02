@@ -4,8 +4,18 @@ table {
     display: flex;
     font-size: 5em;
 
-    .active {
+    .player {
         background: red;
-        color: white;
+        color: red;
     }
+}
+
+.grass {
+    background: green;
+    color: green;
+}
+
+.border {
+    background: blue;
+    color: blue;
 }

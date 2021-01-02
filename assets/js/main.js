@@ -4,7 +4,7 @@ var table = document.getElementById('table');
 // 0 = can walk   1 = wall   2 = player
 var map1 = [
     [1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 1],
+    [1, 0, 0, 3, 0, 1],
     [1, 0, 0, 0, 0, 1],
     [1, 0, 2, 0, 0, 1],
     [1, 1, 1, 1, 1, 1]
@@ -27,9 +27,21 @@ function updateMap() {
     for (var i = 1; i < table.rows.length; i++) {
         // cells
         for (var j = 0; j < table.rows[i].cells.length; j++) {
-            // if number is 2, give it a class of active
+            // monster
+            if (map1[i - 1][j] === 3) {
+                table.rows[i].cells[j].classList.add('monster');
+            }
+            // player
             if (map1[i - 1][j] === 2) {
-                table.rows[i].cells[j].classList.add('active');
+                table.rows[i].cells[j].classList.add('player');
+            }
+            // border
+            if (map1[i - 1][j] === 1) {
+                table.rows[i].cells[j].classList.add('border');
+            }
+            // grass
+            if (map1[i - 1][j] === 0) {
+                table.rows[i].cells[j].classList.add('grass');
             }
             table.rows[i].cells[j].innerHTML = map1[i - 1][j];
         }
@@ -57,8 +69,11 @@ updateMap()
 
 var startY = 3;
 var startX = 2;
-
 console.log(startY, startX)
+
+// // monster positions
+// var monsterY = 1;
+// var monsterX = 4;
 
 document.onkeydown = checkKey;
 function checkKey(e) {
@@ -67,58 +82,56 @@ function checkKey(e) {
 
     // up arrow
     if (e.keyCode == '38') {
-        if (map1[startY - 1][startX] != 1) {
-            map1[startY -= 1][startX]
-            map1[startY][startX] = 2;
-            map1[startY + 1][startX] = 0;
-        } else {
-            console.log('hit wall')
-        }
+        calc('-', 'y');
     }
 
     // down arrow
     else if (e.keyCode == '40') {
-        if (map1[startY + 1][startX] != 1) {
-            map1[startY += 1][startX]
-            map1[startY][startX] = 2;
-            map1[startY - 1][startX] = 0;
-        }
-        else {
-            console.log('hit wall')
-        }
-
+        calc('+', 'y');
     }
 
     // left arrow
     else if (e.keyCode == '37') {
-        if (map1[startY][startX - 1] != 1) {
-            map1[startY][startX -= 1]
-            map1[startY][startX] = 2;
-            map1[startY][startX + 1] = 0;
-        } else {
-            console.log('hit wall')
-        }
+        calc('-', 'x');
     }
 
     // right arrow
     else if (e.keyCode == '39') {
-        if (map1[startY][startX + 1] != 1) {
-            map1[startY][startX += 1]
+        calc('+', 'x');
+    }
+
+    function calc(sign, axis) {
+        console.log(sign, axis)
+        var numY;
+        var numX;
+
+        if (sign == '+' && axis == 'y') {
+            numY = 1;
+            numX = 0;
+        } else if (sign == '-' && axis == 'y') {
+            numY = -1;
+            numX = 0;
+        } else if (sign == '+' && axis == 'x') {
+            numY = 0;
+            numX = 1;
+        } else if (sign == '-' && axis == 'x') {
+            numY = 0;
+            numX = -1;
+        }
+
+        if (map1[startY + numY][startX + numX] != 1) {
+            map1[startY += numY][startX += numX]
             map1[startY][startX] = 2;
-            map1[startY][startX - 1] = 0; //set previous number to 0
+            map1[startY - numY][startX - numX] = 0;
         } else {
             console.log('hit wall')
         }
     }
 
-    // updateMap()
-    // console.log(map1)
-    // console.log(startY, startX)
-    console.log(map1[startY][startX])
-    // console.log(startX, startY)
-
     // remove all instances of "active" class
-    document.getElementsByClassName('active')[0].classList.remove('active')
-    // then
+    document.getElementsByClassName('player')[0].classList.remove('player')
+
     updateMap()
 }
+
+
