@@ -1,0 +1,11 @@
+@import 'reset';
+
+table {
+    display: flex;
+    font-size: 5em;
+
+    .active {
+        background: red;
+        color: white;
+    }
+}
