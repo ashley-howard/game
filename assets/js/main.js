@@ -249,6 +249,18 @@ function myMove(move) {
 function oppMove() {
     // takes no object because it's randomised
     console.log('their move, randomised')
+    var randMove = Math.floor(Math.random() * 100) + 1;
+
+    // if your health is zero, finish match
+    if ((myHealth - randMove) <= 0) {
+        console.log('you lose')
+        myHealth = 0;
+    } else {
+        myHealth -= randMove;
+    }
+
+    healthMine.style.width = `${myHealth}%`
+    console.log(myHealth)
 }
 
 // name, type, description
