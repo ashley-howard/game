@@ -210,17 +210,20 @@ function menu(option) {
 function fight() {
     // menuMove1.attributes.onclick.value = fight(move1)
     menuMove1.innerHTML = moveList[0][0]
-    menuMove1.onclick = function () { myMove(moveList[0][0]) };
+    menuMove1.onclick = function () { myMove(moveList[0]) };
     // myMove(moveList[0])
 
     // menuMove2.attributes.onclick.value = fight(move2)
     menuMove2.innerHTML = moveList[1][0]
+    menuMove2.onclick = function () { myMove(moveList[1]) };
 
     // menuMove3.attributes.onclick.value = fight(move3)
     menuMove3.innerHTML = moveList[2][0]
+    menuMove3.onclick = function () { myMove(moveList[2]) };
 
     // menuMove4.attributes.onclick.value = fight(move4)
     menuMove4.innerHTML = moveList[3][0]
+    menuMove4.onclick = function () { myMove(moveList[3]) };
 }
 
 
@@ -231,12 +234,12 @@ function myMove(move) {
     console.log(move)
 
     // if their health is zero, finish match
-    if ((oppHealth - 20) <= 0) {
+    if ((oppHealth - move[1]) <= 0) {
         console.log('you win')
         oppHealth = 0;
     } else {
         // remove 10 damange from opponent
-        oppHealth -= 20;
+        oppHealth -= move[1];
 
         // oppMove()
     }
