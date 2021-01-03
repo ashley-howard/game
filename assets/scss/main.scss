@@ -19,3 +19,21 @@ table {
     background: blue;
     color: blue;
 }
+
+
+.battle {
+    background: gray;
+    position: absolute;
+    right: 0;
+    height: 500px;
+    width: 500px;
+    top: 0;
+
+    &__menu {
+        position: absolute;
+        background: blue;
+        bottom: 0;
+        height: 170px;
+        width: 100%;
+    }
+}

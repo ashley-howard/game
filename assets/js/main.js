@@ -1,7 +1,17 @@
 var map = document.getElementById('map');
 var table = document.getElementById('table');
+var menuItem1 = document.getElementById('menu-item-1');
+var menuItem2 = document.getElementById('menu-item-2');
+var menuItem3 = document.getElementById('menu-item-1');
+var menuItem4 = document.getElementById('menu-item-1');
 
-// 0 = can walk   1 = wall   2 = player
+var screen;
+screen = "map";
+
+// 0 = grass
+// 1 = wall
+// 2 = player 
+// 3 = monster
 var map1 = [
     [1, 1, 1, 1, 1, 1],
     [1, 0, 0, 3, 0, 1],
@@ -75,63 +85,84 @@ console.log(startY, startX)
 // var monsterY = 1;
 // var monsterX = 4;
 
+// var canMove = true;
+
 document.onkeydown = checkKey;
 function checkKey(e) {
 
     e = e || window.event;
 
-    // up arrow
-    if (e.keyCode == '38') {
-        calc('-', 'y');
-    }
-
-    // down arrow
-    else if (e.keyCode == '40') {
-        calc('+', 'y');
-    }
-
-    // left arrow
-    else if (e.keyCode == '37') {
-        calc('-', 'x');
-    }
-
-    // right arrow
-    else if (e.keyCode == '39') {
-        calc('+', 'x');
-    }
-
-    function calc(sign, axis) {
-        console.log(sign, axis)
-        var numY;
-        var numX;
-
-        if (sign == '+' && axis == 'y') {
-            numY = 1;
-            numX = 0;
-        } else if (sign == '-' && axis == 'y') {
-            numY = -1;
-            numX = 0;
-        } else if (sign == '+' && axis == 'x') {
-            numY = 0;
-            numX = 1;
-        } else if (sign == '-' && axis == 'x') {
-            numY = 0;
-            numX = -1;
+    if (screen == 'map') {
+        // up arrow
+        if (e.keyCode == '38') {
+            calc('-', 'y');
         }
 
-        if (map1[startY + numY][startX + numX] != 1) {
-            map1[startY += numY][startX += numX]
-            map1[startY][startX] = 2;
-            map1[startY - numY][startX - numX] = 0;
-        } else {
-            console.log('hit wall')
+        // down arrow
+        else if (e.keyCode == '40') {
+            calc('+', 'y');
+        }
+
+        // left arrow
+        else if (e.keyCode == '37') {
+            calc('-', 'x');
+        }
+
+        // right arrow
+        else if (e.keyCode == '39') {
+            calc('+', 'x');
+        }
+
+        function calc(sign, axis) {
+            var numY;
+            var numX;
+
+            if (sign == '+' && axis == 'y') {
+                numY = 1;
+                numX = 0;
+            } else if (sign == '-' && axis == 'y') {
+                numY = -1;
+                numX = 0;
+            } else if (sign == '+' && axis == 'x') {
+                numY = 0;
+                numX = 1;
+            } else if (sign == '-' && axis == 'x') {
+                numY = 0;
+                numX = -1;
+            }
+
+            if (map1[startY + numY][startX + numX] == 1) {
+                console.log('hit wall')
+            } else {
+                if (map1[startY + numY][startX + numX] == 3) {
+                    monster()
+                }
+                map1[startY += numY][startX += numX]
+                map1[startY][startX] = 2;
+                map1[startY - numY][startX - numX] = 0;
+            }
+
+            // remove all instances of "active" class
+            document.getElementsByClassName('player')[0].classList.remove('player')
+
+            updateMap()
         }
     }
-
-    // remove all instances of "active" class
-    document.getElementsByClassName('player')[0].classList.remove('player')
-
-    updateMap()
 }
 
 
+function monster() {
+    console.log('encounter monster')
+
+    // block moving on map and change screen
+    screen = 'monster';
+
+    // randomly choose monster from list
+
+
+    // show on screen
+
+    // bring controls back to map
+    // screen = 'map';
+
+}
