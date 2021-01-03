@@ -46,6 +46,11 @@ table {
                 background: blue;
                 height: 20px;
             }
+
+            #health-opponent,
+            #health-mine {
+                width: 100%;
+            }
         }
 
         #monsters {
@@ -64,12 +69,12 @@ table {
                 width: 100px;
             }
 
-            #monster--opponent {
+            #monster-opponent {
                 position: absolute;
                 right: 0;
             }
 
-            #monster--mine {
+            #monster-mine {
                 position: absolute;
                 bottom: 0;
             }

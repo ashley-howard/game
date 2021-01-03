@@ -6,10 +6,10 @@ var menuItem2 = document.getElementById('menu-item-2');
 var menuItem3 = document.getElementById('menu-item-1');
 var menuItem4 = document.getElementById('menu-item-1');
 
-var move1 = document.getElementById('move-1')
-var move2 = document.getElementById('move-2')
-var move3 = document.getElementById('move-3')
-var move4 = document.getElementById('move-4')
+var menuMove1 = document.getElementById('move-1')
+var menuMove2 = document.getElementById('move-2')
+var menuMove3 = document.getElementById('move-3')
+var menuMove4 = document.getElementById('move-4')
 
 var monster1 = document.getElementById('monster-1')
 var monster2 = document.getElementById('monster-2')
@@ -17,6 +17,9 @@ var monster3 = document.getElementById('monster-3')
 var monster4 = document.getElementById('monster-4')
 var monster5 = document.getElementById('monster-5')
 var monster6 = document.getElementById('monster-6')
+
+var healthOpp = document.getElementById('health-opponent')
+var healthMine = document.getElementById('health-mine')
 
 var screen;
 screen = "map";
@@ -183,8 +186,9 @@ function monster() {
 
 function menu(option) {
     if (option === 'fight') {
-        console.log('fight')
-        fight();
+        document.getElementById('fight-menu').style.display = "flex";
+        document.getElementById('main-menu').style.display = "none";
+        fight()
     }
     else if (option === 'bag') {
         console.log('bag')
@@ -201,13 +205,48 @@ function menu(option) {
     }
 }
 
+
+
 function fight() {
-    document.getElementById('fight-menu').style.display = "flex";
-    document.getElementById('main-menu').style.display = "none";
+    // menuMove1.attributes.onclick.value = fight(move1)
+    menuMove1.innerHTML = moveList[0][0]
+    menuMove1.onclick = function () { myMove(moveList[0][0]) };
+    // myMove(moveList[0])
 
-    move1.innerHTML = 'Tail whip'
-    move2.innerHTML = 'Thunder bolt'
-    move3.innerHTML = 'Jump'
-    move4.innerHTML = 'Whack'
+    // menuMove2.attributes.onclick.value = fight(move2)
+    menuMove2.innerHTML = moveList[1][0]
 
+    // menuMove3.attributes.onclick.value = fight(move3)
+    menuMove3.innerHTML = moveList[2][0]
+
+    // menuMove4.attributes.onclick.value = fight(move4)
+    menuMove4.innerHTML = moveList[3][0]
 }
+
+
+var myHealth = 100;
+var oppHealth = 100;
+function myMove(move) {
+
+    console.log(move)
+
+    // remove 10 damange from opponent
+    oppHealth -= 20;
+    healthOpp.style.width = `${oppHealth}%`
+    console.log(oppHealth)
+
+    // oppMove()
+}
+
+function oppMove() {
+    // takes no object because it's randomised
+    console.log('their move, randomised')
+}
+
+// move, damage (%), level learnt, type
+var moveList = [
+    ['Tail whip', 10, 5, 'Normal'],
+    ['Jump', 20, 5, 'Normal'],
+    ['Thunder bolt', 50, 20, 'Electric'],
+    ['Whack', 30, 10, 'Normal'],
+];
