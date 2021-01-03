@@ -238,10 +238,8 @@ function myMove(move) {
         console.log('you win')
         oppHealth = 0;
     } else {
-        // remove 10 damange from opponent
         oppHealth -= move[1];
-
-        // oppMove()
+        oppMove()
     }
 
     healthOpp.style.width = `${oppHealth}%`
@@ -253,10 +251,26 @@ function oppMove() {
     console.log('their move, randomised')
 }
 
+// name, type, description
+var monsterList = [
+    ['Griller', 'Grass'], // "Gorilla", grass type
+    ['Boltion', 'Electric'],
+    ['Aquatia', 'Water'], // rare, "a-KWAY-sha"
+    ['Ballopa', 'Normal']
+];
+
 // move, damage (%), level learnt, type
 var moveList = [
     ['Tail whip', 10, 5, 'Normal'],
     ['Jump', 20, 5, 'Normal'],
     ['Thunder bolt', 50, 20, 'Electric'],
     ['Whack', 30, 10, 'Normal'],
+];
+
+// item, type, hp/chance
+var itemList = [
+    ['Potion', 'Health', 10],
+    ['Super potion', 'Health', 25],
+    ['Max potion', 'Health', 50],
+    ['Pokeball', 'Ball', 10]
 ];
