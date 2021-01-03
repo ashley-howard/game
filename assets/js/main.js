@@ -230,12 +230,19 @@ function myMove(move) {
 
     console.log(move)
 
-    // remove 10 damange from opponent
-    oppHealth -= 20;
+    // if their health is zero, finish match
+    if ((oppHealth - 20) <= 0) {
+        console.log('you win')
+        oppHealth = 0;
+    } else {
+        // remove 10 damange from opponent
+        oppHealth -= 20;
+
+        // oppMove()
+    }
+
     healthOpp.style.width = `${oppHealth}%`
     console.log(oppHealth)
-
-    // oppMove()
 }
 
 function oppMove() {
