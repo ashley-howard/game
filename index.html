@@ -81,34 +81,47 @@
     </table>
 
     <div class="battle">
+
+        <div class="battle__screen">
+            <div id="health">
+                <div id="health--opponent" class="health-bar"></div>
+                <div id="health--mine" class="health-bar"></div>
+            </div>
+
+            <div id="monsters">
+                <div id="monster--opponent" class="monster"></div>
+                <div id="monster--mine" class="monster"></div>
+            </div>
+        </div>
+
         <div class="battle__menu">
 
-            <div class="main-menu">
+            <div id="main-menu">
                 <div onclick="menu('fight')">Fight</div>
                 <div onclick="menu('bag')">Bag</div>
                 <div onclick="menu('monsters')">Monsters</div>
                 <div onclick="menu('run')">Run</div>
             </div>
 
-            <div class="fight-menu">
-                <div id="move-1" onclick="fight('move-1')"></div>
-                <div id="move-2" onclick="fight('move-2')"></div>
-                <div id="move-3" onclick="fight('move-3')"></div>
-                <div id="move-4" onclick="fight('move-4')"></div>
+            <div id="fight-menu">
+                <div id="move-1" onclick="fight('move-1')">Move</div>
+                <div id="move-2" onclick="fight('move-2')">Move</div>
+                <div id="move-3" onclick="fight('move-3')">Move</div>
+                <div id="move-4" onclick="fight('move-4')">Move</div>
             </div>
 
-            <div class="bag-menu">
-                <div id="bag-item-1" onclick="bag('item-1')"></div>
+            <div id="bag-menu">
+                <div id="bag-item-1" onclick="bag('item-1')">Item</div>
                 <!-- dynamic items - can add more -->
             </div>
 
-            <div class="monster-menu">
-                <div id="monster-1" onclick="monster('monster-1')"></div>
-                <div id="monster-2" onclick="monster('monster-2')"></div>
-                <div id="monster-3" onclick="monster('monster-3')"></div>
-                <div id="monster-4" onclick="monster('monster-4')"></div>
-                <div id="monster-5" onclick="monster('monster-5')"></div>
-                <div id="monster-6" onclick="monster('monster-6')"></div>
+            <div id="monster-menu">
+                <div id="monster-1" onclick="monster('monster-1')">Monster</div>
+                <div id="monster-2" onclick="monster('monster-2')">Monster</div>
+                <div id="monster-3" onclick="monster('monster-3')">Monster</div>
+                <div id="monster-4" onclick="monster('monster-4')">Monster</div>
+                <div id="monster-5" onclick="monster('monster-5')">Monster</div>
+                <div id="monster-6" onclick="monster('monster-6')">Monster</div>
             </div>
 
         </div>

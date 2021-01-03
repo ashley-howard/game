@@ -1,9 +1,22 @@
 var map = document.getElementById('map');
 var table = document.getElementById('table');
+
 var menuItem1 = document.getElementById('menu-item-1');
 var menuItem2 = document.getElementById('menu-item-2');
 var menuItem3 = document.getElementById('menu-item-1');
 var menuItem4 = document.getElementById('menu-item-1');
+
+var move1 = document.getElementById('move-1')
+var move2 = document.getElementById('move-2')
+var move3 = document.getElementById('move-3')
+var move4 = document.getElementById('move-4')
+
+var monster1 = document.getElementById('monster-1')
+var monster2 = document.getElementById('monster-2')
+var monster3 = document.getElementById('monster-3')
+var monster4 = document.getElementById('monster-4')
+var monster5 = document.getElementById('monster-5')
+var monster6 = document.getElementById('monster-6')
 
 var screen;
 screen = "map";
@@ -19,7 +32,7 @@ var map1 = [
     [1, 0, 2, 0, 0, 1],
     [1, 1, 1, 1, 1, 1]
 ];
-console.log(map1)
+// console.log(map1)
 
 var totalX = map1[0].length;
 var totalY = map1.length;
@@ -79,7 +92,7 @@ updateMap()
 
 var startY = 3;
 var startX = 2;
-console.log(startY, startX)
+// console.log(startY, startX)
 
 // // monster positions
 // var monsterY = 1;
@@ -164,5 +177,37 @@ function monster() {
 
     // bring controls back to map
     // screen = 'map';
+
+}
+
+
+function menu(option) {
+    if (option === 'fight') {
+        console.log('fight')
+        fight();
+    }
+    else if (option === 'bag') {
+        console.log('bag')
+    }
+    else if (option === 'monsters') {
+        console.log('monsters')
+    }
+    else if (option === 'run') {
+        console.log('run')
+        screen = 'map';
+    }
+    else {
+        console.log('error')
+    }
+}
+
+function fight() {
+    document.getElementById('fight-menu').style.display = "flex";
+    document.getElementById('main-menu').style.display = "none";
+
+    move1.innerHTML = 'Tail whip'
+    move2.innerHTML = 'Thunder bolt'
+    move3.innerHTML = 'Jump'
+    move4.innerHTML = 'Whack'
 
 }
