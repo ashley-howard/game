@@ -176,11 +176,13 @@ function monster() {
     screen = 'monster';
 
     // randomly choose monster from list
-    var randNoMonster = Math.floor(Math.random() * Object.keys(monsters).length);
-    // console.log(randMonster)
+    var randMonster = Math.floor(Math.random() * Object.keys(monsters).length);
+    var randLvl = Math.floor(Math.random() * 100) + 1;
+    var randHp = Math.floor(Math.random() * 500) + 1;
 
-    document.getElementById('monster-opp-battle-name').innerHTML = monsters[Object.keys(monsters)[randNoMonster]].name
-    document.getElementById('monster-opp-battle-level').innerHTML = `Lvl. ${5}`
+    document.getElementById('monster-opp-battle-name').innerHTML = monsters[Object.keys(monsters)[randMonster]].name
+    document.getElementById('monster-opp-battle-level').innerHTML = `Lvl. ${randLvl}`
+    document.getElementById('monster-opp-battle-health').innerHTML = `HP: ${randHp} / ${randHp}`
 
     // show on screen
 
@@ -223,21 +225,38 @@ function fight() {
 
     menuMove4.innerHTML = moves.jump.name
     menuMove4.onclick = function () { myMove(moves.jump) };
+
+
 }
 
-
-var myHealth = 100;
+var battleDialogue = document.getElementById('battle-dialogue');
+// var usersMonsters[0][2] = 100;
 var oppHealth = 100;
 function myMove(move) {
     console.log(move)
 
+
     // if their health is zero, finish match
     if ((oppHealth - move.damage) <= 0) {
         console.log('you win')
+        battleDialogue.innerHTML = `You beat ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
         oppHealth = 0;
     } else {
+        battleDialogue.innerHTML = `${usersMonsters[0][0].name} used ${move.name}!`;
+        setTimeout(function () {
+            // if it takes more than 50% of their HP, say it really hurt 
+            battleDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+
+            setTimeout(function () {
+                battleDialogue.innerHTML = ``;
+            }, 2000);
+        }, 2000);
+
         oppHealth -= move.damage;
-        oppMove()
+
+        setTimeout(function () {
+            oppMove()
+        }, 5000);
     }
 
     healthOpp.style.width = `${oppHealth}%`
@@ -246,25 +265,30 @@ function myMove(move) {
 
 
 
-
-
-
 function oppMove() {
     // takes no object because it's randomised
     console.log('their move, randomised')
 
     var randMove = Math.floor(Math.random() * 100) + 1;
+    console.log("their move: " + randMove)
 
     // if your health is zero, finish match
-    if ((myHealth - randMove) <= 0) {
+    if ((usersMonsters[0][2] - randMove) <= 0) {
         console.log('you lose')
-        myHealth = 0;
+        battleDialogue.innerHTML = `You blacked out!`;
+        usersMonsters[0][2] = 0;
     } else {
-        myHealth -= randMove;
+        battleDialogue.innerHTML = `enemy used blah!`;
+        usersMonsters[0][2] -= randMove;
+        // setTimeout(function () {
+        // }, 2000);
     }
 
-    healthMine.style.width = `${myHealth}%`
-    console.log(myHealth)
+    // usersMonsters[0][2] = usersMonsters[0][2]
+    updateMonsterStats()
+    healthMine.style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
+
+    console.log("my health: " + usersMonsters[0][2])
 }
 
 var items = {
@@ -372,13 +396,16 @@ var usersMonsters = [
 ]
 
 // output monsters to screen
-for (var i = 0; i < usersMonsters.length; i++) {
-    document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMonsters[i][0].name
-    document.getElementById(`monster-1-battle-name`).innerHTML = usersMonsters[0][0].name
-    document.getElementById(`monster-${i + 1}-level`).innerHTML = `Lvl. ${usersMonsters[i][1]}`
-    document.getElementById(`monster-1-battle-level`).innerHTML = `Lvl. ${usersMonsters[0][1]}`
-    document.getElementById(`monster-${i + 1}-health`).innerHTML = `HP: ${usersMonsters[i][2]} / ${usersMonsters[i][3]}`
-    document.getElementById(`monster-1-battle-health`).innerHTML = `HP: ${usersMonsters[0][2]} / ${usersMonsters[0][3]}`
-    document.getElementById(`monster-${i + 1}-health-bar`).style.width = `${100 / (usersMonsters[i][3] / usersMonsters[i][2])}%`
-    document.getElementById(`health-mine`).style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
+function updateMonsterStats() {
+    for (var i = 0; i < usersMonsters.length; i++) {
+        document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMonsters[i][0].name
+        document.getElementById(`monster-1-battle-name`).innerHTML = usersMonsters[0][0].name
+        document.getElementById(`monster-${i + 1}-level`).innerHTML = `Lvl. ${usersMonsters[i][1]}`
+        document.getElementById(`monster-1-battle-level`).innerHTML = `Lvl. ${usersMonsters[0][1]}`
+        document.getElementById(`monster-${i + 1}-health`).innerHTML = `HP: ${usersMonsters[i][2]} / ${usersMonsters[i][3]}`
+        document.getElementById(`monster-1-battle-health`).innerHTML = `HP: ${usersMonsters[0][2]} / ${usersMonsters[0][3]}`
+        document.getElementById(`monster-${i + 1}-health-bar`).style.width = `${100 / (usersMonsters[i][3] / usersMonsters[i][2])}%`
+        document.getElementById(`health-mine`).style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
+    }
 }
+updateMonsterStats() 
