@@ -1,0 +1,96 @@
+.battle {
+    background: gray;
+    position: absolute;
+    right: 0;
+    height: 500px;
+    width: 500px;
+    top: 0;
+
+    &__screen {
+        background: #de03b9;
+        height: 100%;
+        width: 100%;
+
+        #health {
+            position: absolute;
+            height: 436px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .health-bar {
+                background: blue;
+                height: 20px;
+            }
+
+            #health-opponent,
+            #health-mine {
+                width: 100%;
+            }
+        }
+
+        #monsters {
+            height: 335px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            top: 50px;
+            position: relative;
+            width: 90%;
+            margin: auto;
+
+            .monster {
+                background: green;
+                height: 93px;
+                width: 100px;
+            }
+
+            #monster-opponent {
+                position: absolute;
+                right: 0;
+            }
+
+            #monster-mine {
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+
+    &__menu {
+        position: absolute;
+        background: white;
+        bottom: 0;
+        width: 100%;
+
+        &>div {
+            flex-wrap: wrap;
+        }
+
+        &>div>div {
+            display: flex;
+            font-size: 2em;
+            flex-wrap: wrap;
+            width: 50%;
+            cursor: pointer;
+
+            &:hover {
+                background: blue;
+            }
+        }
+
+        #main-menu {
+            display: flex;
+        }
+
+        #fight-menu,
+        #bag-menu,
+        #monster-menu {
+            display: none;
+        }
+
+    }
+
+
+}

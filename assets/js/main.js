@@ -284,27 +284,34 @@ var moves = {
     "tailWhip": {
         name: "Tail whip",
         type: "Normal",
-        damage: 10
+        damage: 10,
+        chance: 100
     },
     "jump": {
         name: "Jump",
         type: "Normal",
-        damage: 20
+        damage: 20,
+        chance: 100
     },
     "thunderBolt": {
         name: "Thunder bolt",
         type: "Electric",
-        damage: 50
+        damage: 50,
+        chance: 90,
+        effect: "Paralyzed"
     },
     "whack": {
         name: "Whack",
         type: "Normal",
-        damage: 30
+        damage: 30,
+        chance: 100,
+        effect: "Confused"
     },
     "thrash": {
         name: "Thrash",
         type: "Grass",
-        damage: 60
+        damage: 60,
+        chance: 100
     }
 };
 
@@ -344,8 +351,20 @@ var monsters = {
     }
 };
 
-// monster, level, any stats
+// monster, level, health, any stats (poisoned, high attack, etc)
 var usersMonsters = [
-    [monsters.griller, 5],
-    [monsters.boltion, 10]
+    [monsters.griller, 5, 100],
+    [monsters.boltion, 10, 76],
+    [monsters.aquatia, 5, 46],
+    [monsters.ballopa, 13, 76],
+    [monsters.aquatia, 53, 47],
+    [monsters.boltion, 9, 32]
 ]
+// output monsters to screen
+
+for (var i = 0; i < usersMonsters.length; i++) {
+    // document.getElementById(`monster-${i + 1}-img`).innerHTML = usersMonsters[i][0].img
+    document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMonsters[i][0].name
+    document.getElementById(`monster-${i + 1}-level`).innerHTML = usersMonsters[i][1]
+    document.getElementById(`monster-${i + 1}-health`).style.width = `${usersMonsters[i][2]}%`
+}
