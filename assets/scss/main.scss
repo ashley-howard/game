@@ -2,22 +2,51 @@
 
 table {
     display: flex;
-    font-size: 5em;
+    font-size: 10em;
 
     .player {
-        background: red;
-        color: red;
+        background: #aff750;
+        color: transparent;
+        background-image: url(../img/main.png), url(../img/grass.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .monster {
+        background: #aff750;
+        color: transparent;
+        background-image: url(../img/grass.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    td {
+        line-height: 48px;
+        overflow: hidden;
     }
 }
 
 .grass {
-    background: green;
-    color: green;
+    background: #aff750;
+    color: transparent;
+    background-image: url(../img/grass.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
 .border {
     background: blue;
-    color: blue;
+    color: transparent;
+    // line-height: 10px;
+    // font-size: 30px;
+
+    background-image: url(../img/rock.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 

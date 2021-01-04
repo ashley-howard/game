@@ -58,15 +58,15 @@ function updateMap() {
                 table.rows[i].cells[j].classList.add('monster');
             }
             // player
-            if (map1[i - 1][j] === 2) {
+            else if (map1[i - 1][j] === 2) {
                 table.rows[i].cells[j].classList.add('player');
             }
             // border
-            if (map1[i - 1][j] === 1) {
+            else if (map1[i - 1][j] === 1) {
                 table.rows[i].cells[j].classList.add('border');
             }
             // grass
-            if (map1[i - 1][j] === 0) {
+            else if (map1[i - 1][j] === 0) {
                 table.rows[i].cells[j].classList.add('grass');
             }
             table.rows[i].cells[j].innerHTML = map1[i - 1][j];
@@ -152,6 +152,8 @@ function checkKey(e) {
             } else {
                 if (map1[startY + numY][startX + numX] == 3) {
                     monster()
+                    document.getElementsByClassName('monster')[0].classList.remove('monster')
+
                 }
                 map1[startY += numY][startX += numX]
                 map1[startY][startX] = 2;
@@ -209,21 +211,21 @@ function menu(option) {
 
 function fight() {
     // menuMove1.attributes.onclick.value = fight(move1)
-    menuMove1.innerHTML = moveList[0][0]
-    menuMove1.onclick = function () { myMove(moveList[0]) };
+    menuMove1.innerHTML = movesList.tailWhip.name
+    menuMove1.onclick = function () { myMove(movesList.tailWhip) };
     // myMove(moveList[0])
 
     // menuMove2.attributes.onclick.value = fight(move2)
-    menuMove2.innerHTML = moveList[1][0]
-    menuMove2.onclick = function () { myMove(moveList[1]) };
+    menuMove2.innerHTML = movesList.thunderBolt.name
+    menuMove2.onclick = function () { myMove(movesList.thunderBolt.name) };
 
     // menuMove3.attributes.onclick.value = fight(move3)
-    menuMove3.innerHTML = moveList[2][0]
-    menuMove3.onclick = function () { myMove(moveList[2]) };
+    menuMove3.innerHTML = movesList.whack.name
+    menuMove3.onclick = function () { myMove(movesList.whack) };
 
     // menuMove4.attributes.onclick.value = fight(move4)
-    menuMove4.innerHTML = moveList[3][0]
-    menuMove4.onclick = function () { myMove(moveList[3]) };
+    menuMove4.innerHTML = movesList.jump.name
+    menuMove4.onclick = function () { myMove(movesList.jump) };
 }
 
 
@@ -263,26 +265,90 @@ function oppMove() {
     console.log(myHealth)
 }
 
-// name, type, description
-var monsterList = [
-    ['Griller', 'Grass'], // "Gorilla", grass type
-    ['Boltion', 'Electric'],
-    ['Aquatia', 'Water'], // rare, "a-KWAY-sha"
-    ['Ballopa', 'Normal']
-];
 
-// move, damage (%), level learnt, type
-var moveList = [
-    ['Tail whip', 10, 5, 'Normal'],
-    ['Jump', 20, 5, 'Normal'],
-    ['Thunder bolt', 50, 20, 'Electric'],
-    ['Whack', 30, 10, 'Normal'],
-];
+var items = {
+    "potion": {
+        name: "Potion",
+        type: "Health",
+        hp: 10
+    },
+    "super-potion": {
+        name: "Super potion",
+        type: "Health",
+        hp: 25
+    },
+    "max-potion": {
+        name: "Super potion",
+        type: "Health",
+        hp: 50
+    },
+    "pokeball": {
+        name: "Pokeball",
+        type: "Ball",
+        catchrate: 10
+    }
+};
 
-// item, type, hp/chance
-var itemList = [
-    ['Potion', 'Health', 10],
-    ['Super potion', 'Health', 25],
-    ['Max potion', 'Health', 50],
-    ['Pokeball', 'Ball', 10]
-];
+var movesList = {
+    "tailWhip": {
+        name: "Tail whip",
+        type: "Normal",
+        damage: 10
+    },
+    "jump": {
+        name: "Jump",
+        type: "Normal",
+        damage: 20
+    },
+    "thunderBolt": {
+        name: "Thunder bolt",
+        type: "Electric",
+        damage: 50
+    },
+    "whack": {
+        name: "Whack",
+        type: "Normal",
+        damage: 301
+    }
+};
+
+// -- MONSTER DIRECTORY -- // move + level learnt //
+var monsters = {
+    "griller": {//"Gorilla", grass type
+        name: "Griller",
+        type: "Grass",
+        moves: [
+            [movesList.whack, 5], 
+            [movesList.tailWhip, 5]
+        ]
+    },
+    "boltion": {
+        name: "Boltion",
+        type: "Electric",
+        moves: [
+            [movesList.thunderBolt, 5]
+        ]
+    },
+    "aquatia": {
+        name: "Aquatia", // rare, "a-KWAY-sha"
+        type: "Water",
+        moves: [
+            [movesList.whack, 5],
+            [movesList.tailWhip, 5]
+        ]
+    },
+    "ballopa": {
+        name: "Ballopa",
+        type: "Normal",
+        moves: [
+            [movesList.whack, 5],
+            [movesList.tailWhip, 5]
+        ]
+    }
+};
+
+// monster, level, any stats
+var usersMonsters = [
+    [monsters.griller, 5],
+    [monsters.boltion, 10]
+]
