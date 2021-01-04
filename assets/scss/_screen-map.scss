@@ -21,7 +21,7 @@ table {
     }
 
     td {
-        line-height: 48px;
+        line-height: 36px;
         overflow: hidden;
     }
 }
@@ -36,11 +36,12 @@ table {
 }
 
 .border {
+    border: none !important;
     background: blue;
     color: transparent;
     // line-height: 10px;
     // font-size: 30px;
-    background-image: url(../img/rock.jpg);
+    background-image: url(../img/rock.png), url(../img/grass.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
