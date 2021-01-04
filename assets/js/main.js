@@ -208,17 +208,17 @@ function menu(option) {
 }
 
 function fight() {
-    menuMove1.innerHTML = movesList.tailWhip.name
-    menuMove1.onclick = function () { myMove(movesList.tailWhip) };
+    menuMove1.innerHTML = moves.tailWhip.name
+    menuMove1.onclick = function () { myMove(moves.tailWhip) };
 
-    menuMove2.innerHTML = movesList.thunderBolt.name
-    menuMove2.onclick = function () { myMove(movesList.thunderBolt) };
+    menuMove2.innerHTML = moves.thunderBolt.name
+    menuMove2.onclick = function () { myMove(moves.thunderBolt) };
 
-    menuMove3.innerHTML = movesList.whack.name
-    menuMove3.onclick = function () { myMove(movesList.whack) };
+    menuMove3.innerHTML = moves.whack.name
+    menuMove3.onclick = function () { myMove(moves.whack) };
 
-    menuMove4.innerHTML = movesList.jump.name
-    menuMove4.onclick = function () { myMove(movesList.jump) };
+    menuMove4.innerHTML = moves.jump.name
+    menuMove4.onclick = function () { myMove(moves.jump) };
 }
 
 
@@ -257,19 +257,18 @@ function oppMove() {
     console.log(myHealth)
 }
 
-
 var items = {
     "potion": {
         name: "Potion",
         type: "Health",
         hp: 10
     },
-    "super-potion": {
+    "superPotion": {
         name: "Super potion",
         type: "Health",
         hp: 25
     },
-    "max-potion": {
+    "maxPotion": {
         name: "Super potion",
         type: "Health",
         hp: 50
@@ -277,11 +276,11 @@ var items = {
     "pokeball": {
         name: "Pokeball",
         type: "Ball",
-        catchrate: 10
+        catchRate: 10
     }
 };
 
-var movesList = {
+var moves = {
     "tailWhip": {
         name: "Tail whip",
         type: "Normal",
@@ -301,40 +300,46 @@ var movesList = {
         name: "Whack",
         type: "Normal",
         damage: 30
+    },
+    "thrash": {
+        name: "Thrash",
+        type: "Grass",
+        damage: 60
     }
 };
 
 // -- MONSTER DIRECTORY -- // move + level learnt //
 var monsters = {
-    "griller": {//"Gorilla", grass type
-        name: "Griller",
+    "griller": {
+        name: "Griller", // "Gorilla", grass type
         type: "Grass",
         moves: [
-            [movesList.whack, 5],
-            [movesList.tailWhip, 5]
+            [moves.whack, 5],
+            [moves.tailWhip, 12],
+            [moves.thrash, 50],
         ]
     },
     "boltion": {
         name: "Boltion",
         type: "Electric",
         moves: [
-            [movesList.thunderBolt, 5]
+            [moves.thunderBolt, 5]
         ]
     },
     "aquatia": {
         name: "Aquatia", // rare, "a-KWAY-sha"
         type: "Water",
         moves: [
-            [movesList.whack, 5],
-            [movesList.tailWhip, 5]
+            [moves.whack, 5],
+            [moves.tailWhip, 5]
         ]
     },
     "ballopa": {
         name: "Ballopa",
         type: "Normal",
         moves: [
-            [movesList.whack, 5],
-            [movesList.tailWhip, 5]
+            [moves.whack, 5],
+            [moves.tailWhip, 5]
         ]
     }
 };
