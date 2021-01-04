@@ -46,6 +46,11 @@
                 width: 100px;
             }
 
+            .battle-details {
+                display: flex;
+                flex-direction: column;
+            }
+
             #monster-opponent {
                 position: absolute;
                 right: 0;

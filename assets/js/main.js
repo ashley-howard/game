@@ -176,7 +176,11 @@ function monster() {
     screen = 'monster';
 
     // randomly choose monster from list
+    var randNoMonster = Math.floor(Math.random() * Object.keys(monsters).length);
+    // console.log(randMonster)
 
+    document.getElementById('monster-opp-battle-name').innerHTML = monsters[Object.keys(monsters)[randNoMonster]].name
+    document.getElementById('monster-opp-battle-level').innerHTML = `Lvl. ${5}`
 
     // show on screen
 
@@ -240,9 +244,15 @@ function myMove(move) {
     console.log(oppHealth)
 }
 
+
+
+
+
+
 function oppMove() {
     // takes no object because it's randomised
     console.log('their move, randomised')
+
     var randMove = Math.floor(Math.random() * 100) + 1;
 
     // if your health is zero, finish match
@@ -353,7 +363,7 @@ var monsters = {
 
 // monster, level, health, max health, any stats (poisoned, high attack, etc)
 var usersMonsters = [
-    [monsters.griller, 5, 100, 200],
+    [monsters.griller, 5, 200, 200],
     [monsters.boltion, 10, 76, 120],
     [monsters.aquatia, 5, 46, 120],
     [monsters.ballopa, 13, 76, 342],
