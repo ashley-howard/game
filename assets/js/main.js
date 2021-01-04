@@ -1,6 +1,7 @@
 var map = document.getElementById('map');
 var table = document.getElementById('table');
 
+var menuDialogue = document.getElementById('menu-dialogue');
 var menuItem1 = document.getElementById('menu-item-1');
 var menuItem2 = document.getElementById('menu-item-2');
 var menuItem3 = document.getElementById('menu-item-1');
@@ -43,7 +44,7 @@ var map1 = [
 ];
 // console.log(map1)
 
-var startY; 
+var startY;
 var startX;
 
 var totalX = map1[0].length;
@@ -246,42 +247,39 @@ function fight() {
 
 }
 
-var menuDialogue = document.getElementById('menu-dialogue');
-// var usersMonsters[0][2] = 100;
+
 var randHp;
 function myMove(move) {
     console.log(move)
 
-    // randHp = randMaxHp;
+    menuDialogue.style.display = "flex";
     // if their health is zero, finish match
     if ((randHp - move.damage) <= 0) {
         console.log('you win')
         menuDialogue.innerHTML = `You beat ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
         randHp = 0;
+        document.getElementById('monster-opp-battle-health').innerHTML = `HP: ${randHp} / ${randMaxHp}`
+        healthOpp.style.width = `${100 / (randMaxHp / randHp)}%`
     } else {
         menuDialogue.innerHTML = `${usersMonsters[0][0].name} used ${move.name}!`;
-        setTimeout(function () {
-            // if it takes more than 50% of their HP, say it really hurt 
-            menuDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
-
-            setTimeout(function () {
-                menuDialogue.innerHTML = ``;
-            }, 2000);
-        }, 2000);
-
         randHp -= move.damage;
 
         setTimeout(function () {
-            oppMove()
-        }, 5000);
+            document.getElementById('monster-opp-battle-health').innerHTML = `HP: ${randHp} / ${randMaxHp}`
+            healthOpp.style.width = `${100 / (randMaxHp / randHp)}%`
+
+            setTimeout(function () {
+                // if it takes more than 50% of their HP, say it really hurt 
+                menuDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+
+                // console.log(randHp)
+                setTimeout(function () {
+                    oppMove()
+                }, 2000);
+            }, 2000);
+        }, 2000);
     }
-
-    document.getElementById('monster-opp-battle-health').innerHTML = `HP: ${randHp} / ${randMaxHp}`
-    healthOpp.style.width = `${100 / (randMaxHp / randHp)}%`
-    console.log(randHp)
 }
-
-
 
 function oppMove() {
     // takes no object because it's randomised
@@ -290,22 +288,36 @@ function oppMove() {
     var randMove = Math.floor(Math.random() * 100) + 1;
     console.log("their move: " + randMove)
 
+    // menuDialogue.style.display = "none";
+
     // if your health is zero, finish match
     if ((usersMonsters[0][2] - randMove) <= 0) {
         console.log('you lose')
         menuDialogue.innerHTML = `You blacked out!`;
         usersMonsters[0][2] = 0;
+        updateMonsterStats()
+        healthMine.style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
+        console.log("my health: " + usersMonsters[0][2])
+
     } else {
         menuDialogue.innerHTML = `enemy used blah!`;
         usersMonsters[0][2] -= randMove;
-        // setTimeout(function () {
-        // }, 2000);
-    }
+        setTimeout(function () {
 
+            updateMonsterStats()
+            healthMine.style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
+            console.log("my health: " + usersMonsters[0][2])
+
+            setTimeout(function () {
+                menuDialogue.innerHTML = "That really hurt!";
+
+                setTimeout(function () {
+                    menuDialogue.style.display = "none";
+                }, 2000);
+            }, 2000);
+        }, 2000);
+    }
     // usersMonsters[0][2] = usersMonsters[0][2]
-    updateMonsterStats()
-    healthMine.style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
-    console.log("my health: " + usersMonsters[0][2])
 }
 
 var items = {
