@@ -351,20 +351,20 @@ var monsters = {
     }
 };
 
-// monster, level, health, any stats (poisoned, high attack, etc)
+// monster, level, health, max health, any stats (poisoned, high attack, etc)
 var usersMonsters = [
-    [monsters.griller, 5, 100],
-    [monsters.boltion, 10, 76],
-    [monsters.aquatia, 5, 46],
-    [monsters.ballopa, 13, 76],
-    [monsters.aquatia, 53, 47],
-    [monsters.boltion, 9, 32]
+    [monsters.griller, 5, 100, 200],
+    [monsters.boltion, 10, 76, 120],
+    [monsters.aquatia, 5, 46, 120],
+    [monsters.ballopa, 13, 76, 342],
+    [monsters.aquatia, 53, 47, 433],
+    [monsters.boltion, 9, 32, 443]
 ]
-// output monsters to screen
 
+// output monsters to screen
 for (var i = 0; i < usersMonsters.length; i++) {
-    // document.getElementById(`monster-${i + 1}-img`).innerHTML = usersMonsters[i][0].img
     document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMonsters[i][0].name
-    document.getElementById(`monster-${i + 1}-level`).innerHTML = usersMonsters[i][1]
-    document.getElementById(`monster-${i + 1}-health`).style.width = `${usersMonsters[i][2]}%`
+    document.getElementById(`monster-${i + 1}-level`).innerHTML = `Lvl. ${usersMonsters[i][1]}`
+    document.getElementById(`monster-${i + 1}-health`).innerHTML = `HP: ${usersMonsters[i][2]} / ${usersMonsters[i][3]}`
+    document.getElementById(`monster-${i + 1}-health-bar`).style.width = `${100 / (usersMonsters[i][3] / usersMonsters[i][2])}%`
 }
