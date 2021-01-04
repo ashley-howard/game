@@ -2,3 +2,11 @@
 @import 'screen-map';
 @import 'screen-monsters';
 @import 'screen-battle';
+
+body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+}
+
+.progress {
+    border-radius: 0;
+}

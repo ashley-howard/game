@@ -364,7 +364,11 @@ var usersMonsters = [
 // output monsters to screen
 for (var i = 0; i < usersMonsters.length; i++) {
     document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMonsters[i][0].name
+    document.getElementById(`monster-1-battle-name`).innerHTML = usersMonsters[0][0].name
     document.getElementById(`monster-${i + 1}-level`).innerHTML = `Lvl. ${usersMonsters[i][1]}`
+    document.getElementById(`monster-1-battle-level`).innerHTML = `Lvl. ${usersMonsters[0][1]}`
     document.getElementById(`monster-${i + 1}-health`).innerHTML = `HP: ${usersMonsters[i][2]} / ${usersMonsters[i][3]}`
+    document.getElementById(`monster-1-battle-health`).innerHTML = `HP: ${usersMonsters[0][2]} / ${usersMonsters[0][3]}`
     document.getElementById(`monster-${i + 1}-health-bar`).style.width = `${100 / (usersMonsters[i][3] / usersMonsters[i][2])}%`
+    document.getElementById(`health-mine`).style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
 }
