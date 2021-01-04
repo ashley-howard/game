@@ -22,6 +22,10 @@ var monster6 = document.getElementById('monster-6')
 var healthOpp = document.getElementById('health-opponent')
 var healthMine = document.getElementById('health-mine')
 
+var playerNameDiv = document.getElementById('player-name')
+var playerName = "Ash";
+playerNameDiv.innerHTML = playerName;
+
 var moneyDiv = document.getElementById('money')
 var money = 0;
 moneyDiv.innerHTML = `£${money}`;
@@ -421,14 +425,14 @@ var monsters = {
     }
 };
 
-// monster, level, health, max health, any stats (poisoned, high attack, etc)
+// monster, level, health, max health, exp points, exp point till next level, any stats (poisoned, high attack, etc)
 var usersMonsters = [
-    [monsters.griller, 5, 200, 200],
-    [monsters.boltion, 10, 76, 120],
-    [monsters.aquatia, 5, 46, 120],
-    [monsters.ballopa, 13, 76, 342],
-    [monsters.aquatia, 53, 47, 433],
-    [monsters.boltion, 9, 32, 443]
+    [monsters.griller, 5, 200, 200, 2, 5],
+    [monsters.boltion, 10, 76, 120, 2, 7],
+    [monsters.aquatia, 5, 46, 120, 2, 23],
+    [monsters.ballopa, 13, 76, 342, 2, 34],
+    [monsters.aquatia, 53, 47, 433, 2, 34],
+    [monsters.boltion, 9, 32, 443, 2, 34]
 ]
 
 // monster, level, max health, holding item?
