@@ -24,10 +24,16 @@ var healthMine = document.getElementById('health-mine')
 var screen;
 screen = "map";
 
+// when saving the game, can just save map numbers 
+
 // 0 = grass
 // 1 = wall
 // 2 = player 
 // 3 = monster
+// 4 = shop
+// 5 = pokecenter
+// 7 = gym
+// 8 = other people?
 var map1 = [
     [1, 1, 1, 1, 1, 1],
     [1, 0, 0, 3, 0, 1],
@@ -36,6 +42,9 @@ var map1 = [
     [1, 1, 1, 1, 1, 1]
 ];
 // console.log(map1)
+
+var startY; 
+var startX;
 
 var totalX = map1[0].length;
 var totalY = map1.length;
@@ -60,6 +69,8 @@ function updateMap() {
             // player
             else if (map1[i - 1][j] === 2) {
                 table.rows[i].cells[j].classList.add('player');
+                startY = i - 1
+                startX = j
             }
             // border
             else if (map1[i - 1][j] === 1) {
@@ -74,6 +85,8 @@ function updateMap() {
     }
 }
 updateMap()
+
+
 
 // starting point
 // map1[3][2]
@@ -93,8 +106,7 @@ updateMap()
 //     // don't go
 // }
 
-var startY = 3;
-var startX = 2;
+
 // console.log(startY, startX)
 
 // // monster positions
@@ -234,7 +246,7 @@ function fight() {
 
 }
 
-var battleDialogue = document.getElementById('battle-dialogue');
+var menuDialogue = document.getElementById('menu-dialogue');
 // var usersMonsters[0][2] = 100;
 var randHp;
 function myMove(move) {
@@ -244,16 +256,16 @@ function myMove(move) {
     // if their health is zero, finish match
     if ((randHp - move.damage) <= 0) {
         console.log('you win')
-        battleDialogue.innerHTML = `You beat ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+        menuDialogue.innerHTML = `You beat ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
         randHp = 0;
     } else {
-        battleDialogue.innerHTML = `${usersMonsters[0][0].name} used ${move.name}!`;
+        menuDialogue.innerHTML = `${usersMonsters[0][0].name} used ${move.name}!`;
         setTimeout(function () {
             // if it takes more than 50% of their HP, say it really hurt 
-            battleDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+            menuDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
 
             setTimeout(function () {
-                battleDialogue.innerHTML = ``;
+                menuDialogue.innerHTML = ``;
             }, 2000);
         }, 2000);
 
@@ -281,10 +293,10 @@ function oppMove() {
     // if your health is zero, finish match
     if ((usersMonsters[0][2] - randMove) <= 0) {
         console.log('you lose')
-        battleDialogue.innerHTML = `You blacked out!`;
+        menuDialogue.innerHTML = `You blacked out!`;
         usersMonsters[0][2] = 0;
     } else {
-        battleDialogue.innerHTML = `enemy used blah!`;
+        menuDialogue.innerHTML = `enemy used blah!`;
         usersMonsters[0][2] -= randMove;
         // setTimeout(function () {
         // }, 2000);
@@ -398,6 +410,16 @@ var usersMonsters = [
     [monsters.ballopa, 13, 76, 342],
     [monsters.aquatia, 53, 47, 433],
     [monsters.boltion, 9, 32, 443]
+]
+
+// monster, level, max health, holding item?
+var map1Monsters = [
+    [monsters.griller, 45, 200],
+    [monsters.boltion, 27, 76],
+    [monsters.aquatia, 34, 46],
+    [monsters.ballopa, 55, 76],
+    [monsters.aquatia, 45, 47],
+    [monsters.boltion, 34, 32]
 ]
 
 // output monsters to screen
