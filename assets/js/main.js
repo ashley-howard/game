@@ -22,6 +22,10 @@ var monster6 = document.getElementById('monster-6')
 var healthOpp = document.getElementById('health-opponent')
 var healthMine = document.getElementById('health-mine')
 
+var moneyDiv = document.getElementById('money')
+var money = 0;
+moneyDiv.innerHTML = `£${money}`;
+
 var screen;
 screen = "map";
 
@@ -243,8 +247,6 @@ function fight() {
 
     menuMove4.innerHTML = moves.jump.name
     menuMove4.onclick = function () { myMove(moves.jump) };
-
-
 }
 
 
@@ -260,6 +262,8 @@ function myMove(move) {
         randHp = 0;
         document.getElementById('monster-opp-battle-health').innerHTML = `HP: ${randHp} / ${randMaxHp}`
         healthOpp.style.width = `${100 / (randMaxHp / randHp)}%`
+        money += 300;
+        moneyDiv.innerHTML = `£${money}`;
     } else {
         menuDialogue.innerHTML = `${usersMonsters[0][0].name} used ${move.name}!`;
         randHp -= move.damage;
@@ -300,7 +304,7 @@ function oppMove() {
         console.log("my health: " + usersMonsters[0][2])
 
     } else {
-        menuDialogue.innerHTML = `enemy used blah!`;
+        menuDialogue.innerHTML = `${document.getElementById('monster-opp-battle-name').innerHTML} used blah!`;
         usersMonsters[0][2] -= randMove;
         setTimeout(function () {
 
@@ -348,33 +352,36 @@ var moves = {
         name: "Tail whip",
         type: "Normal",
         damage: 10,
-        chance: 100
+        hitChance: 100
     },
     "jump": {
         name: "Jump",
         type: "Normal",
         damage: 20,
-        chance: 100
+        hitChance: 100
     },
     "thunderBolt": {
         name: "Thunder bolt",
         type: "Electric",
         damage: 50,
-        chance: 90,
-        effect: "Paralyzed"
+        hitChance: 90,
+        effect: "Paralyzed",
+        effectChance: 5
+
     },
     "whack": {
         name: "Whack",
         type: "Normal",
         damage: 30,
-        chance: 100,
-        effect: "Confused"
+        hitChance: 100,
+        effect: "Confused",
+        effectChance: 5
     },
     "thrash": {
         name: "Thrash",
         type: "Grass",
         damage: 60,
-        chance: 100
+        hitChance: 100
     }
 };
 
