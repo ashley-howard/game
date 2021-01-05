@@ -133,21 +133,25 @@ function checkKey(e) {
         // up arrow
         if (e.keyCode == '38') {
             calc('-', 'y');
+            // give player class 'up'
         }
 
         // down arrow
         else if (e.keyCode == '40') {
             calc('+', 'y');
+             // give player class 'down'
         }
 
         // left arrow
         else if (e.keyCode == '37') {
             calc('-', 'x');
+             // give player class 'left'
         }
 
         // right arrow
         else if (e.keyCode == '39') {
             calc('+', 'x');
+             // give player class 'right'
         }
 
         function calc(sign, axis) {
@@ -269,7 +273,7 @@ function myMove(move) {
         money += 300;
         moneyDiv.innerHTML = `£${money}`;
     } else {
-        menuDialogue.innerHTML = `${usersMonsters[0][0].name} used ${move.name}!`;
+        menuDialogue.innerHTML = `${usersMainSix[0][0].name} used ${move.name}!`;
         randHp -= move.damage;
 
         setTimeout(function () {
@@ -299,22 +303,22 @@ function oppMove() {
     // menuDialogue.style.display = "none";
 
     // if your health is zero, finish match
-    if ((usersMonsters[0][2] - randMove) <= 0) {
+    if ((usersMainSix[0][2] - randMove) <= 0) {
         console.log('you lose')
         menuDialogue.innerHTML = `You blacked out!`;
-        usersMonsters[0][2] = 0;
+        usersMainSix[0][2] = 0;
         updateMonsterStats()
-        healthMine.style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
-        console.log("my health: " + usersMonsters[0][2])
+        healthMine.style.width = `${100 / (usersMainSix[0][3] / usersMainSix[0][2])}%`
+        console.log("my health: " + usersMainSix[0][2])
 
     } else {
         menuDialogue.innerHTML = `${document.getElementById('monster-opp-battle-name').innerHTML} used blah!`;
-        usersMonsters[0][2] -= randMove;
+        usersMainSix[0][2] -= randMove;
         setTimeout(function () {
 
             updateMonsterStats()
-            healthMine.style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
-            console.log("my health: " + usersMonsters[0][2])
+            healthMine.style.width = `${100 / (usersMainSix[0][3] / usersMainSix[0][2])}%`
+            console.log("my health: " + usersMainSix[0][2])
 
             setTimeout(function () {
                 menuDialogue.innerHTML = "That really hurt!";
@@ -325,7 +329,7 @@ function oppMove() {
             }, 2000);
         }, 2000);
     }
-    // usersMonsters[0][2] = usersMonsters[0][2]
+    // usersMainSix[0][2] = usersMainSix[0][2]
 }
 
 var items = {
@@ -371,7 +375,6 @@ var moves = {
         hitChance: 90,
         effect: "Paralyzed",
         effectChance: 5
-
     },
     "whack": {
         name: "Whack",
@@ -392,41 +395,61 @@ var moves = {
 // -- MONSTER DIRECTORY -- // move + level learnt //
 var monsters = {
     "griller": {
+        number: 1,
         name: "Griller", // "Gorilla", grass type
         type: "Grass",
         moves: [
             [moves.whack, 5],
             [moves.tailWhip, 12],
             [moves.thrash, 50],
-        ]
+        ],
+        // evolution: [monsters.boltion, 16],
+        description: "This monster...",
+        breedChance: 40,
+        breedNames: ["Grill", "er"],
+        breedColour: "Green"
     },
     "boltion": {
+        number: 2,
         name: "Boltion",
         type: "Electric",
         moves: [
             [moves.thunderBolt, 5]
-        ]
+        ],
+        description: "This monster...",
+        breedChance: 20,
+        breedNames: ["Bolt", "ion"],
+        breedColour: "Yellow"
     },
     "aquatia": {
+        number: 100,
         name: "Aquatia", // rare, "a-KWAY-sha"
         type: "Water",
         moves: [
             [moves.whack, 5],
             [moves.tailWhip, 5]
-        ]
+        ],
+        description: "This monster...",
+        breedChance: 5,
+        breedNames: ["Aquat", "ia"],
+        breedColour: "Gold"
     },
     "ballopa": {
+        number: 3,
         name: "Ballopa",
         type: "Normal",
         moves: [
             [moves.whack, 5],
             [moves.tailWhip, 5]
-        ]
+        ],
+        description: "This monster...",
+        breedChance: 50,
+        breedNames: ["Ball", "opa"],
+        breedColour: "Red"
     }
 };
 
-// monster, level, health, max health, exp points, exp point till next level, any stats (poisoned, high attack, etc)
-var usersMonsters = [
+var usersMainSix = [
     [monsters.griller, 5, 200, 200, 2, 5],
     [monsters.boltion, 10, 76, 120, 2, 7],
     [monsters.aquatia, 5, 46, 120, 2, 23],
@@ -435,27 +458,53 @@ var usersMonsters = [
     [monsters.boltion, 9, 32, 443, 2, 34]
 ]
 
+// monster, level, health, max health, exp points, exp point till next level, any stats (poisoned, high attack, etc)
+var usersMonsters = [
+    [usersMainSix],
+    [monsters.boltion, 34, 76, 120, 2, 7],
+    [monsters.aquatia, 42, 46, 120, 2, 23],
+    [monsters.ballopa, 14, 76, 342, 2, 34],
+    [monsters.aquatia, 43, 47, 433, 2, 34],
+    [monsters.boltion, 521, 32, 443, 2, 34]
+]
+
 // monster, level, max health, holding item?
 var map1Monsters = [
     [monsters.griller, 45, 200],
     [monsters.boltion, 27, 76],
-    [monsters.aquatia, 34, 46],
-    [monsters.ballopa, 55, 76],
-    [monsters.aquatia, 45, 47],
     [monsters.boltion, 34, 32]
+    [monsters.aquatia, 34, 46],
+    [monsters.aquatia, 45, 47],
+    [monsters.ballopa, 55, 76],
 ]
+
+var specialItems = {
+    "bike": {
+        name: "Bike",
+        playerSpeed: 20 // move faster by 20%
+    }
+}
 
 // output monsters to screen
 function updateMonsterStats() {
-    for (var i = 0; i < usersMonsters.length; i++) {
-        document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMonsters[i][0].name
-        document.getElementById(`monster-1-battle-name`).innerHTML = usersMonsters[0][0].name
-        document.getElementById(`monster-${i + 1}-level`).innerHTML = `Lvl. ${usersMonsters[i][1]}`
-        document.getElementById(`monster-1-battle-level`).innerHTML = `Lvl. ${usersMonsters[0][1]}`
-        document.getElementById(`monster-${i + 1}-health`).innerHTML = `HP: ${usersMonsters[i][2]} / ${usersMonsters[i][3]}`
-        document.getElementById(`monster-1-battle-health`).innerHTML = `HP: ${usersMonsters[0][2]} / ${usersMonsters[0][3]}`
-        document.getElementById(`monster-${i + 1}-health-bar`).style.width = `${100 / (usersMonsters[i][3] / usersMonsters[i][2])}%`
-        document.getElementById(`health-mine`).style.width = `${100 / (usersMonsters[0][3] / usersMonsters[0][2])}%`
+    for (var i = 0; i < usersMainSix.length; i++) {
+        document.getElementById(`monster-${i + 1}-name`).innerHTML = usersMainSix[i][0].name
+        document.getElementById(`monster-1-battle-name`).innerHTML = usersMainSix[0][0].name
+        document.getElementById(`monster-${i + 1}-level`).innerHTML = `Lvl. ${usersMainSix[i][1]}`
+        document.getElementById(`monster-1-battle-level`).innerHTML = `Lvl. ${usersMainSix[0][1]}`
+        document.getElementById(`monster-${i + 1}-health`).innerHTML = `HP: ${usersMainSix[i][2]} / ${usersMainSix[i][3]}`
+        document.getElementById(`monster-1-battle-health`).innerHTML = `HP: ${usersMainSix[0][2]} / ${usersMainSix[0][3]}`
+        document.getElementById(`monster-${i + 1}-health-bar`).style.width = `${100 / (usersMainSix[i][3] / usersMainSix[i][2])}%`
+        document.getElementById(`health-mine`).style.width = `${100 / (usersMainSix[0][3] / usersMainSix[0][2])}%`
     }
 }
-updateMonsterStats() 
+updateMonsterStats()
+
+function breedName() {
+    var a = Math.floor(Math.random() * 2);
+    var b = a === 0 ? 1 : 0;
+
+    console.log(a, b)
+    // set a to first monster breedNames array
+    // set b to second monster breedNames array
+}
