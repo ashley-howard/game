@@ -1,6 +1,7 @@
 table {
     display: flex;
     font-size: 10em;
+    flex-direction: column;
 
     .player {
         background: #aff750;

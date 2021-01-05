@@ -50,27 +50,32 @@ var map1 = [
     [1, 0, 2, 0, 0, 1],
     [1, 1, 1, 1, 1, 1]
 ];
-// console.log(map1)
 
-var startY;
 var startX;
+var startY;
 
-var totalX = map1[0].length;
-var totalY = map1.length;
+var totalX = map1[0].length; // columns
+var totalY = map1.length; // rows
 
-// function loadMap() {
-//     var table = document.createElement("table");   // Create a <button> element
-//     table.innerHTML = 3;                   // Insert text
-//     map.appendChild(table);               // Append <button> to <body>
-// }
-// loadMap()
+// console.log(totalX, totalY)
 
+function createMap() {
+    for (var i = 0; i < totalY; i++) {
+        var tr = document.createElement("TR");
+        for (var j = 0; j < totalX; j++) {
+            var td = document.createElement("TD");
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    updateMap()
+}
+createMap()
 
-// rows
 function updateMap() {
-    for (var i = 0; i < table.rows.length; i++) {
+    for (var i = 0; i < totalY; i++) {
         // cells
-        for (var j = 0; j < table.rows[i].cells.length; j++) {
+        for (var j = 0; j < totalX; j++) {
             // monster
             if (map1[i][j] === 3) {
                 table.rows[i].cells[j].classList.add('monster');
@@ -90,12 +95,13 @@ function updateMap() {
                 table.rows[i].cells[j].classList.add('grass');
             }
             table.rows[i].cells[j].innerHTML = map1[i][j];
-
-
         }
     }
 }
-updateMap()
+
+
+
+
 
 
 
