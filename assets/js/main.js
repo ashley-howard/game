@@ -1,6 +1,8 @@
 var map = document.getElementById('map');
 var table = document.getElementById('table');
 
+var loadingScreen = document.getElementById('loading-screen');
+
 var menuDialogue = document.getElementById('menu-dialogue');
 var menuItem1 = document.getElementById('menu-item-1');
 var menuItem2 = document.getElementById('menu-item-2');
@@ -36,20 +38,27 @@ screen = "map";
 
 // when saving the game, can just save map numbers 
 
-// 0 = grass
+// 0 = ground
 // 1 = wall
 // 2 = player 
-// 3 = monster
-// 4 = shop
-// 5 = pokecenter
+// 3 = grass / monster
+// 
+// 5 = shop
+// 6 = pokecenter
 // 7 = gym
 // 8 = other people?
 var map1 = [
-    [1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 3, 0, 1],
-    [1, 0, 0, 0, 0, 1],
-    [1, 0, 2, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1]
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 2, 4, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
 var startX;
@@ -75,9 +84,13 @@ function updateMap() {
     for (var i = 0; i < totalY; i++) {
         // cells
         for (var j = 0; j < totalX; j++) {
-            // monster
-            if (map1[i][j] === 3) {
-                table.rows[i].cells[j].className = 'monster';
+            // ground
+            if (map1[i][j] === 0) {
+                table.rows[i].cells[j].className = 'ground';
+            }
+            // border
+            else if (map1[i][j] === 1) {
+                table.rows[i].cells[j].className = 'border';
             }
             // player
             else if (map1[i][j] === 2) {
@@ -85,13 +98,17 @@ function updateMap() {
                 startY = i
                 startX = j
             }
-            // border
-            else if (map1[i][j] === 1) {
-                table.rows[i].cells[j].className = 'border';
-            }
             // grass
-            else if (map1[i][j] === 0) {
+            else if (map1[i][j] === 3) {
                 table.rows[i].cells[j].className = 'grass';
+            }
+            // monster
+            else if (map1[i][j] === 4) {
+                table.rows[i].cells[j].className = 'monster';
+            }
+            // shop
+            else if (map1[i][j] === 5) {
+                table.rows[i].cells[j].className = 'shop';
             }
             table.rows[i].cells[j].innerHTML = map1[i][j];
         }
@@ -174,6 +191,8 @@ function monster() {
     // block moving on map and change screen
     screen = 'monster';
     document.getElementsByClassName('battle')[0].style.display = "flex"
+    loadingScreen.style.display = "flex"
+    setTimeout(function () { loadingScreen.style.display = "none"; }, 2000);
 
     // randomly choose monster from list
     randMonster = Math.floor(Math.random() * Object.keys(monsters).length);
@@ -479,3 +498,5 @@ function breedName() {
     // set a to first monster breedNames array
     // set b to second monster breedNames array
 }
+
+

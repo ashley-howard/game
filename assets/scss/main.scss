@@ -2,7 +2,9 @@
 @import 'screen-map';
 @import 'screen-monsters';
 @import 'screen-battle';
+@import 'menu';
 @import 'screen-dev';
+@import 'loading';
 
 body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -18,13 +20,14 @@ body {
     justify-content: center;
     height: 100vh;
     width: 100%;
+    // line-height: 0;
 
     // line-height: 10px;
     // font-size: 30px;
-    background-color: #191919;
-    background-image: url(../img/tree.png);
+    background-color: #aff750;
+    // background-image: url(../img/tree.png);
+    // background-position: center;
     // background-repeat: no-repeat;
-    background-position: center;
     // background-size: cover;
 }
 

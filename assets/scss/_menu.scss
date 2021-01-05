@@ -1,0 +1,27 @@
+div#menu {
+    position: absolute;
+    background: #ffffffb0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 3em;
+    padding: 20px;
+
+    .logo {
+        font-family: fantasy;
+        margin-bottom: 80px;
+        text-align: center;
+    }
+
+    span {
+        margin: 10px 5px;
+        padding: 0px 10px;
+        cursor: pointer;
+        border-left: 5px solid transparent;
+
+        &:hover {
+            border-left: 5px solid #191919;
+        }
+    }
+}
