@@ -1,37 +1,50 @@
+$menu-height: 200px;
+
 .battle {
-    background: gray;
+    background: white;
     position: absolute;
     right: 0;
-    height: 500px;
-    width: 500px;
+    height: 100%;
+    width: 100%;
     top: 0;
 
     &__screen {
-        background: #de03b9;
-        height: 100%;
+        // background: #de03b9;
+        height: calc(100% - #{$menu-height});
         width: 100%;
+        position: relative;
 
         #health {
             position: absolute;
-            height: 436px;
+            height: 100%;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
 
-            .health-bar {
-                background: blue;
-                height: 20px;
+            // .health-bar {
+            //     background: blue;
+            //     height: 20px;
+            // }
+
+            .progress {
+                height: 1.5rem;
             }
 
             #health-opponent,
             #health-mine {
                 width: 100%;
             }
+
+            #health-opponent {
+                &.progress-bar {
+                    background-color: #fd0d0d;
+                }
+            }
         }
 
         #monsters {
-            height: 335px;
+            height: 80%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -65,9 +78,12 @@
 
     &__menu {
         position: absolute;
-        background: white;
+        background: linear-gradient(45deg, #007eff, #5eef76); // have animation to change colour slowly
         bottom: 0;
         width: 100%;
+        height: $menu-height;
+        color: white;
+        // border-top: 10px solid white;
 
         &>div {
             flex-wrap: wrap;
@@ -77,16 +93,23 @@
             display: flex;
             font-size: 2em;
             flex-wrap: wrap;
-            width: 50%;
+            width: 47%;
             cursor: pointer;
+            background: #ffffff1f;
+            margin: 15px;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid transparent;
 
             &:hover {
-                background: blue;
+                background: #fbfbfb6b;
+                border: 2px solid #ffffff4a;
             }
         }
 
         #main-menu {
             display: flex;
+            height: 100%;
         }
 
         #fight-menu,

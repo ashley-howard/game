@@ -173,6 +173,7 @@ function monster() {
 
     // block moving on map and change screen
     screen = 'monster';
+    document.getElementsByClassName('battle')[0].style.display = "flex"
 
     // randomly choose monster from list
     randMonster = Math.floor(Math.random() * Object.keys(monsters).length);
