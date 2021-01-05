@@ -68,28 +68,30 @@ var totalY = map1.length;
 
 // rows
 function updateMap() {
-    for (var i = 1; i < table.rows.length; i++) {
+    for (var i = 0; i < table.rows.length; i++) {
         // cells
         for (var j = 0; j < table.rows[i].cells.length; j++) {
             // monster
-            if (map1[i - 1][j] === 3) {
+            if (map1[i][j] === 3) {
                 table.rows[i].cells[j].classList.add('monster');
             }
             // player
-            else if (map1[i - 1][j] === 2) {
+            else if (map1[i][j] === 2) {
                 table.rows[i].cells[j].classList.add('player');
-                startY = i - 1
+                startY = i
                 startX = j
             }
             // border
-            else if (map1[i - 1][j] === 1) {
+            else if (map1[i][j] === 1) {
                 table.rows[i].cells[j].classList.add('border');
             }
             // grass
-            else if (map1[i - 1][j] === 0) {
+            else if (map1[i][j] === 0) {
                 table.rows[i].cells[j].classList.add('grass');
             }
-            table.rows[i].cells[j].innerHTML = map1[i - 1][j];
+            table.rows[i].cells[j].innerHTML = map1[i][j];
+
+
         }
     }
 }
@@ -139,19 +141,19 @@ function checkKey(e) {
         // down arrow
         else if (e.keyCode == '40') {
             calc('+', 'y');
-             // give player class 'down'
+            // give player class 'down'
         }
 
         // left arrow
         else if (e.keyCode == '37') {
             calc('-', 'x');
-             // give player class 'left'
+            // give player class 'left'
         }
 
         // right arrow
         else if (e.keyCode == '39') {
             calc('+', 'x');
-             // give player class 'right'
+            // give player class 'right'
         }
 
         function calc(sign, axis) {
