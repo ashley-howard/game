@@ -7,8 +7,32 @@
 body {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+    // line-height: 10px;
+    // font-size: 30px;
+    background-color: #191919;
+    background-image: url(../img/tree.png);
+    // background-repeat: no-repeat;
+    background-position: center;
+    // background-size: cover;
 }
 
 .progress {
     border-radius: 0;
+}
+
+.battle,
+.monster-screen {
+    display: none;
 }

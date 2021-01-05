@@ -106,25 +106,25 @@ function checkKey(e) {
         // up arrow
         if (e.keyCode == '38') {
             calc('-', 'y');
-            document.getElementsByClassName('player')[0].classList.add('up')
+            player[0].classList.add('up')
         }
 
         // down arrow
         else if (e.keyCode == '40') {
             calc('+', 'y');
-            document.getElementsByClassName('player')[0].classList.add('down')
+            player[0].classList.add('down')
         }
 
         // left arrow
         else if (e.keyCode == '37') {
             calc('-', 'x');
-            document.getElementsByClassName('player')[0].classList.add('left')
+            player[0].classList.add('left')
         }
 
         // right arrow
         else if (e.keyCode == '39') {
             calc('+', 'x');
-            document.getElementsByClassName('player')[0].classList.add('right')
+            player[0].classList.add('right')
         }
 
         function calc(sign, axis) {

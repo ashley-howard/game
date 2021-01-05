@@ -1,7 +1,10 @@
 table {
-    display: flex;
-    font-size: 10em;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
+    // font-size: 10em;
+    // display :
+    width: 361px;
+    height: 295px;
 
     .player {
         background: #aff750;
@@ -9,17 +12,20 @@ table {
         background-image: url(../img/player-down.png), url(../img/grass.jpg);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: contain;
+        // background-size: contain;
 
         &.up {
             background-image: url(../img/player-up.png), url(../img/grass.jpg);
         }
+
         &.down {
             background-image: url(../img/player-down.png), url(../img/grass.jpg);
         }
+
         &.left {
             background-image: url(../img/player-left.png), url(../img/grass.jpg);
         }
+
         &.right {
             background-image: url(../img/player-right.png), url(../img/grass.jpg);
         }
@@ -31,12 +37,12 @@ table {
         background-image: url(../img/grass.jpg);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: contain;
+        // background-size: contain;
     }
 
     td {
-        line-height: 36px;
-        overflow: hidden;
+        // line-height: 36px;
+        // overflow: hidden;
     }
 }
 
@@ -46,7 +52,7 @@ table {
     background-image: url(../img/grass.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    // background-size: contain;
 
     // position: relative;
 
@@ -66,12 +72,12 @@ table {
 
 .border {
     border: none !important;
-    background: blue;
+    // background: blue;
     color: transparent;
     // line-height: 10px;
     // font-size: 30px;
     background-image: url(../img/tree.png), url(../img/grass.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    // background-size: cover;
 }
