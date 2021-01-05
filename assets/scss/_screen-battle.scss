@@ -8,6 +8,7 @@ $menu-bg: linear-gradient(45deg, #007eff, #5eef76);
     height: 100%;
     width: 100%;
     top: 0;
+    z-index: 1;
 
     &__screen {
         // background: #de03b9;

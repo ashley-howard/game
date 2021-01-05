@@ -194,6 +194,8 @@ function monster() {
     loadingScreen.style.display = "flex"
     setTimeout(function () { loadingScreen.style.display = "none"; }, 2000);
 
+
+
     // randomly choose monster from list
     randMonster = Math.floor(Math.random() * Object.keys(monsters).length);
     randLvl = Math.floor(Math.random() * 100) + 1;
@@ -227,6 +229,14 @@ function menu(option) {
     else if (option === 'run') {
         console.log('run')
         screen = 'map';
+        menuDialogue.style.display = "flex";
+        menuDialogue.innerHTML = 'You fled the scene'
+        setTimeout(function () {
+            document.getElementsByClassName('battle')[0].style.display = "none";
+            menuDialogue.style.display = "none";
+            menuDialogue.innerHTML = ''
+        }, 2000);
+
     }
     else {
         console.log('error')
@@ -271,10 +281,8 @@ function myMove(move) {
             healthOpp.style.width = `${100 / (randMaxHp / randHp)}%`
 
             setTimeout(function () {
-                // if it takes more than 50% of their HP, say it really hurt 
-                menuDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+                hurtOpp()
 
-                // console.log(randHp)
                 setTimeout(function () {
                     oppMove()
                 }, 2000);
@@ -282,6 +290,65 @@ function myMove(move) {
         }, 2000);
     }
 }
+
+function hurtOpp() {
+    var hurtMsg;
+    var oppHurt = 100 - (100 / (randMaxHp / randHp))
+    if (oppHurt <= 10) {
+        hurtMsg = `didn't even leave a mark!`
+    }
+    else if (oppHurt <= 25) {
+        hurtMsg = `worked pretty well!`
+    }
+    else if (oppHurt <= 50) {
+        hurtMsg = `wow that was great!`
+    }
+    else if (oppHurt <= 75) {
+        hurtMsg = `wow that was amazing!`
+    }
+    else if (oppHurt <= 99) {
+        hurtMsg = `that must have hurt a lot!`
+    }
+    else if (oppHurt == 100) {
+        hurtMsg = `one-hit KO!`
+    }
+
+    // work it out by how much it takes off the width of the bar
+    // for opp: 100 - (100 / (randMaxHp / randHp))
+    // for me: 100 - (100 / (usersMainSix[0][3] / usersMainSix[0][2]))
+    // menuDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+    menuDialogue.innerHTML = hurtMsg;
+}
+
+function hurtMe() {
+    var hurtMsg;
+    var meHurt = 100 - (100 / (usersMainSix[0][3] / usersMainSix[0][2]))
+    if (meHurt <= 10) {
+        hurtMsg = `didn't even leave a mark!`
+    }
+    else if (meHurt <= 25) {
+        hurtMsg = `worked pretty well!`
+    }
+    else if (meHurt <= 50) {
+        hurtMsg = `wow that was great!`
+    }
+    else if (meHurt <= 75) {
+        hurtMsg = `wow that was amazing!`
+    }
+    else if (meHurt <= 99) {
+        hurtMsg = `that must have hurt a lot!`
+    }
+    else if (meHurt == 100) {
+        hurtMsg = `one-hit KO!`
+    }
+
+    // work it out by how much it takes off the width of the bar
+    // for opp: 100 - (100 / (randMaxHp / randHp))
+    // for me: 100 - (100 / (usersMainSix[0][3] / usersMainSix[0][2]))
+    // menuDialogue.innerHTML = `It really hurt ${document.getElementById('monster-opp-battle-name').innerHTML}!`;
+    menuDialogue.innerHTML = hurtMsg;
+}
+
 
 function oppMove() {
     // takes no object because it's randomised
@@ -311,7 +378,8 @@ function oppMove() {
             console.log("my health: " + usersMainSix[0][2])
 
             setTimeout(function () {
-                menuDialogue.innerHTML = "That really hurt!";
+
+                hurtMe()
 
                 setTimeout(function () {
                     menuDialogue.style.display = "none";
