@@ -6,10 +6,23 @@ table {
     .player {
         background: #aff750;
         color: transparent;
-        background-image: url(../img/main.png), url(../img/grass.jpg);
+        background-image: url(../img/player-down.png), url(../img/grass.jpg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
+
+        &.up {
+            background-image: url(../img/player-up.png), url(../img/grass.jpg);
+        }
+        &.down {
+            background-image: url(../img/player-down.png), url(../img/grass.jpg);
+        }
+        &.left {
+            background-image: url(../img/player-left.png), url(../img/grass.jpg);
+        }
+        &.right {
+            background-image: url(../img/player-right.png), url(../img/grass.jpg);
+        }
     }
 
     .monster {
@@ -34,6 +47,21 @@ table {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+
+    // position: relative;
+
+    // &::before {
+    //     position: absolute;
+    //     content: "";
+    //     background: #60c808;
+    //     height: 25px;
+    //     width: 17px;
+    //     left: -2px;
+    //     box-shadow: inset 7px 9px 0px 0px #aff750;
+    //     transform: rotate(-15deg);
+    //     top: -4px;
+    //     border-radius: 7px;
+    // }
 }
 
 .border {
@@ -42,7 +70,7 @@ table {
     color: transparent;
     // line-height: 10px;
     // font-size: 30px;
-    background-image: url(../img/rock.png), url(../img/grass.jpg);
+    background-image: url(../img/tree.png), url(../img/grass.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

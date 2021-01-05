@@ -22,6 +22,7 @@ var monster6 = document.getElementById('monster-6')
 var healthOpp = document.getElementById('health-opponent')
 var healthMine = document.getElementById('health-mine')
 
+var player = document.getElementsByClassName('player')
 var playerNameDiv = document.getElementById('player-name')
 var playerName = "Ash";
 playerNameDiv.innerHTML = playerName;
@@ -57,8 +58,6 @@ var startY;
 var totalX = map1[0].length; // columns
 var totalY = map1.length; // rows
 
-// console.log(totalX, totalY)
-
 function createMap() {
     for (var i = 0; i < totalY; i++) {
         var tr = document.createElement("TR");
@@ -78,88 +77,54 @@ function updateMap() {
         for (var j = 0; j < totalX; j++) {
             // monster
             if (map1[i][j] === 3) {
-                table.rows[i].cells[j].classList.add('monster');
+                table.rows[i].cells[j].className = 'monster';
             }
             // player
             else if (map1[i][j] === 2) {
-                table.rows[i].cells[j].classList.add('player');
+                table.rows[i].cells[j].className = 'player';
                 startY = i
                 startX = j
             }
             // border
             else if (map1[i][j] === 1) {
-                table.rows[i].cells[j].classList.add('border');
+                table.rows[i].cells[j].className = 'border';
             }
             // grass
             else if (map1[i][j] === 0) {
-                table.rows[i].cells[j].classList.add('grass');
+                table.rows[i].cells[j].className = 'grass';
             }
             table.rows[i].cells[j].innerHTML = map1[i][j];
         }
     }
 }
 
-
-
-
-
-
-
-// starting point
-// map1[3][2]
-
-// var startPos = map1[3][2]
-// console.log(startPos)
-
-// var map1Copy = [
-//     [1, 1, 1, 1, 1],
-//     [1, 0, 0, 0, 1],
-//     [1, 0, 1, 0, 1],
-//     [1, 0, 2, 0, 1],
-//     [1, 1, 1, 1, 1]
-// ];
-
-// if (x === 1) {
-//     // don't go
-// }
-
-
-// console.log(startY, startX)
-
-// // monster positions
-// var monsterY = 1;
-// var monsterX = 4;
-
-// var canMove = true;
-
 document.onkeydown = checkKey;
 function checkKey(e) {
-
     e = e || window.event;
 
     if (screen == 'map') {
         // up arrow
         if (e.keyCode == '38') {
             calc('-', 'y');
-            // give player class 'up'
+            document.getElementsByClassName('player')[0].classList.add('up')
         }
 
         // down arrow
         else if (e.keyCode == '40') {
             calc('+', 'y');
-            // give player class 'down'
+            document.getElementsByClassName('player')[0].classList.add('down')
         }
 
         // left arrow
         else if (e.keyCode == '37') {
             calc('-', 'x');
-            // give player class 'left'
+            document.getElementsByClassName('player')[0].classList.add('left')
         }
 
         // right arrow
         else if (e.keyCode == '39') {
             calc('+', 'x');
-            // give player class 'right'
+            document.getElementsByClassName('player')[0].classList.add('right')
         }
 
         function calc(sign, axis) {
@@ -192,9 +157,6 @@ function checkKey(e) {
                 map1[startY][startX] = 2;
                 map1[startY - numY][startX - numX] = 0;
             }
-
-            // remove all instances of "active" class
-            document.getElementsByClassName('player')[0].classList.remove('player')
 
             updateMap()
         }
